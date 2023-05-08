@@ -29,7 +29,7 @@ router.post("/signin",async(req,res)=>{
         }
 
         const token=jwt.sign({name:user.name,username:user.username,id:user._id}, "12345")
-        res.json({token})
+        res.json({ token, ...user });
     } catch (error) {
         res.status(400).json({message:error.message || error})
     }

@@ -6,9 +6,9 @@ const Category = require("../../schemas/Category");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const categories = Category.find({ user: req.user.id });
+    const categories = await Category.find({ user: req.user.id });
     res.json(categories);
   } catch (error) {
     res.status(400).json({ message: error.message || error });
